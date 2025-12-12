@@ -23,7 +23,10 @@ export async function loginAction(prevState: AuthFormState, formData: FormData |
     if (!validatedFields.success) {
         return {
             status: STATUS_CONSTANTS.ERROR,
-            errors: validatedFields.error.flatten().fieldErrors,
+            errors: {
+                ...validatedFields.error.flatten().fieldErrors,
+                _form: [],
+            }
         }
     }
 

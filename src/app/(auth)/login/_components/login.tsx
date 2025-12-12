@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { startTransition, useActionState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export default function Login() {
     const form = useForm<LoginForm>({
@@ -35,11 +36,16 @@ export default function Login() {
 
     useEffect(() => {
         if (loginState?.status === STATUS_CONSTANTS.ERROR) {
+            toast.error('Login failed. Please try again.', {
+                description: loginState?.errors?._form?.[0],
+                position: 'top-center',
+                duration: 2000,
+            });
             startTransition(() => {
                 initLogin(null)
             })
         }
-    }, [loginState, isPendingLogin])
+    }, [loginState])
 
     return (
         <Card>
