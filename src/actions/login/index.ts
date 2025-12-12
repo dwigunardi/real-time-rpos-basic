@@ -63,5 +63,5 @@ export async function loginAction(prevState: AuthFormState, formData: FormData |
     }
 
     revalidatePath('/', 'layout')
-    redirect('/');
+    redirect('/admin');
 }
