@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             </div>
             <div className="flex w-full max-w-sm flex-col gap-6">
                 <div className="flex items-center self-center font-medium gap-2">
-                    <div className="bg-teal-500 flex p-2 rounded-md items-center justify-center">
+                    <div className="bg-cyan-600 flex p-2 rounded-md items-center justify-center">
                         <Coffee className="size-4" />
                     </div>
                     <span className="text-xl">Kumpul Cafe</span>
