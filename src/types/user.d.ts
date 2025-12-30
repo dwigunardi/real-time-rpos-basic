@@ -1,4 +1,4 @@
-export type AuthFormState = {
+export type CreateUserFormState = {
     status?: string;
     errors?: {
         email?: string[];
@@ -10,9 +10,10 @@ export type AuthFormState = {
     }
 }
 
-export type Profile = {
-    id?: string;
-    name?: string;
-    role?: string
+export type CreateUserInput = {
+    email: string;
+    password: string;
+    name: string;
+    role: string;
     avatar_url?: string;
 }
