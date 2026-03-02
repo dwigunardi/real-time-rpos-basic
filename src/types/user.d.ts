@@ -15,5 +15,5 @@ export type CreateUserInput = {
     password: string;
     name: string;
     role: string;
-    avatar_url?: string;
+    avatar_url?: undefined | File | string;
 }

@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { email, password, name, role } = validatedFields.data;
+  const { email, password, name, role, avatar_url } = validatedFields.data;
 
   // 4. Supabase signUp
   const { error, data } = await supabase.auth.signUp({
@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
       data: {
         name,
         role,
+        avatar_url
       },
     },
   });

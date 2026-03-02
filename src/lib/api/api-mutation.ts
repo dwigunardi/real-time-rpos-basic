@@ -20,7 +20,6 @@ export function useApiMutation<TData, TVariables = void>(
   const result = useMutation<TData, ApiError, TVariables>({
     mutationFn,
     onError: (error) => {
-      console.log("error => ", error)
       if (error.status === 401 && onUnauthorized) {
         onUnauthorized();
       }

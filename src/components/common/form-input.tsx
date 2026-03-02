@@ -3,7 +3,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/
 import { Input } from "../ui/input";
 import { PasswordInput } from "../ui/password-input";
 import { Textarea } from "../ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 
 type FormInputProps<T extends FieldValues> = {
     form: UseFormReturn<T>;
@@ -41,17 +41,20 @@ export default function FormInput<T extends FieldValues>(
                         />
                     ) : type === 'select' && fieldType && fieldType === 'select' ? (
                         <Select onValueChange={rest.onChange} defaultValue={rest.value}>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder={placeholder} />
-                                </SelectTrigger>
-                                <SelectContent className='hover:scrollbar-thumb-primary/80 scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-md'>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder={placeholder} />
+                            </SelectTrigger>
+                            <SelectContent className='hover:scrollbar-thumb-primary/80 scrollbar-track-transparent scrollbar-thin scrollbar-thumb-rounded-md'>
+                                <SelectGroup>
+                                    <SelectLabel>Choose Available {label}</SelectLabel>
                                     {selectValue?.map((option: string, index: number) => (
                                         <SelectItem key={index} value={option} className='hover:bg-cyan-600!'>
                                             {option.slice(0, 1).toUpperCase() + option.slice(1).toLowerCase()}
                                         </SelectItem>
                                     ))}
-                                </SelectContent>
-                            </Select>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     ) : (
                         <Input
                             {...rest}

@@ -7,12 +7,15 @@ import { User } from "@supabase/supabase-js";
 import { ReactNode, useEffect } from "react";
 
 export default function AuthStoreProvider({
-    children, profile, user
+    children, profile, user, initialProfile
 }: {
-    children: ReactNode; profile: Profile | null, user: User | null
+    children: ReactNode; profile: Profile | null, user: User | null, initialProfile?: any
 }) {
 
     useEffect(() => {
+        if (initialProfile) {
+            useAuthStore.getState().setInitialProfile(initialProfile);
+        }
         useAuthStore.getState().setUser(user);
         useAuthStore.getState().setProfile(profile);
     }, [profile])

@@ -6,7 +6,7 @@ export const createUserSchemaForm = z.object({
     password: z.string().min(6, 'Password must be at least 6 characters').max(100, 'Password must be at most 100 characters'),
     name: z.string().min(1, 'Name is required'),
     role: z.enum(Object.values(Roles) as [string, ...string[]], { message: 'Role is required' }),
-    // avatar_url: z.union([z.string().min(1, 'Avatar URL is required'), z.instanceof(File)], { message: 'Avatar URL is required' }).optional(),
+    avatar_url: z.union([z.string().min(1, 'Avatar URL is required'), z.instanceof(File)], { message: 'Avatar URL is required' }).optional(),
 });
 
 export type CreateUserForm = z.infer<typeof createUserSchemaForm>
@@ -16,7 +16,7 @@ export const updateUserSchemaForm = z.object({
     password: z.string().min(6, 'Password must be at least 6 characters').max(100, 'Password must be at most 100 characters').optional().or(z.literal('')),
     name: z.string().min(1, 'Name is required'),
     role: z.enum(Object.values(Roles) as [string, ...string[]], { message: 'Role is required' }),
-    //avatar_url: z.union([z.string().min(1, 'Avatar URL is required'), z.instanceof(File)], { message: 'Avatar URL is required' }).optional(),
+    avatar_url: z.union([z.string().min(1, 'Avatar URL is required'), z.instanceof(File)], { message: 'Avatar URL is required' }).optional(),
 });
 
 export type UpdateUserForm = z.infer<typeof updateUserSchemaForm>

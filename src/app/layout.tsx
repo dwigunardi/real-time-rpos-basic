@@ -26,6 +26,11 @@ export default async function RootLayout({
   const profile = JSON.parse(cookiesStore.get("user_profile")?.value ?? "{}");
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser()
+  const {data: profiles} = await supabase
+    .from('profiles')
+    .select('id, name, role, avatar_url')
+    .eq('id', user?.id)
+    .single();
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -33,7 +38,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
-          <AuthStoreProvider profile={profile} user={user!}>
+          <AuthStoreProvider profile={profile} user={user!} initialProfile={profiles}>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"

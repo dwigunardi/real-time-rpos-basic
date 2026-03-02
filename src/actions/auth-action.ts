@@ -7,8 +7,8 @@ import { cookies } from "next/headers"
 export async function signOut() {
     const supabase = await createClient()
     const cookieStore = await cookies()
+    cookieStore.set("user_profile", JSON.stringify({}), { maxAge: 0 });
     const { error } = await supabase.auth.signOut()
-    cookieStore.delete('user_profile')
     revalidatePath('/', 'layout')
     if (error) {
         return {
